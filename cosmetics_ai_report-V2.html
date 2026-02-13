@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>彩妆香水行业 AI 品牌排行榜与推荐势能商业报告</title>
+  <meta name="description" content="彩妆香水行业 AI 品牌排行榜与推荐势能商业报告，基于 13,652 条对话与多平台采集数据。" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f6f5f2;
+      --bg-strong: #f0ede6;
+      --ink: #151515;
+      --ink-muted: #4c4c4c;
+      --brand: #ef5a3c;
+      --brand-dark: #c9482f;
+      --card: #ffffff;
+      --border: #e7e3db;
+      --shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+      --radius: 18px;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Plus Jakarta Sans", "Noto Sans SC", system-ui, -apple-system, sans-serif;
+      color: var(--ink);
+      background: radial-gradient(circle at top left, #fff7ef, var(--bg)) fixed;
+      line-height: 1.55;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .container {
+      width: min(1140px, 92vw);
+      margin: 0 auto;
+    }
+
+    .hero {
+      position: relative;
+      padding: 72px 0 56px;
+      background: linear-gradient(120deg, #fff6ee 0%, #f8f1ea 40%, #f3f0e9 100%);
+      border-bottom: 1px solid var(--border);
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 40px;
+      align-items: center;
+    }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: #fff;
+      border: 1px solid var(--border);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink-muted);
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 3vw, 3.2rem);
+      margin: 16px 0 18px;
+      letter-spacing: -0.02em;
+    }
+    .hero p {
+      font-size: 1.05rem;
+      color: var(--ink-muted);
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 24px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 20px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+    .btn-primary {
+      background: var(--brand);
+      color: #fff;
+      border-color: var(--brand);
+      box-shadow: 0 12px 24px rgba(239, 90, 60, 0.25);
+    }
+    .btn-primary:hover { background: var(--brand-dark); }
+    .btn-ghost {
+      background: transparent;
+      border-color: var(--border);
+      color: var(--ink);
+    }
+    .hero-card {
+      background: var(--card);
+      border-radius: 28px;
+      padding: 32px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      right: -80px;
+      top: -120px;
+      background: radial-gradient(circle, rgba(239, 90, 60, 0.2), transparent 70%);
+    }
+    .hero-card h3 {
+      margin: 0 0 12px;
+      font-size: 1.1rem;
+    }
+    .hero-card ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 12px;
+    }
+    .hero-card li {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.95rem;
+      border-bottom: 1px dashed var(--border);
+      padding-bottom: 8px;
+    }
+
+    .chapters {
+      padding: 36px 0 12px;
+    }
+    .chapter-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+    }
+    .chapter-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px 18px;
+      transition: all 0.2s ease;
+    }
+    .chapter-card:hover {
+      border-color: var(--brand);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+    }
+    .chapter-card span {
+      display: block;
+      font-size: 0.8rem;
+      color: var(--ink-muted);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    section {
+      padding: 64px 0;
+    }
+    .section-header {
+      display: grid;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+    .section-header .tag {
+      width: fit-content;
+      background: #fff9f4;
+      border-color: #f2d8cf;
+      color: #b6503a;
+    }
+    .section-header h2 {
+      margin: 0;
+      font-size: clamp(1.6rem, 2.4vw, 2.2rem);
+    }
+    .section-header p {
+      margin: 0;
+      color: var(--ink-muted);
+      max-width: 720px;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+    }
+    .stat {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .stat-label { color: var(--ink-muted); font-size: 0.9rem; }
+
+    .table-wrap {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow-x: auto;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 540px;
+    }
+    thead th {
+      position: sticky;
+      top: 0;
+      background: #fff8f3;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #8b5b4b;
+    }
+    th, td {
+      padding: 14px 16px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.95rem;
+    }
+    tbody tr:nth-child(even) { background: #fcfaf7; }
+
+    .bar {
+      position: relative;
+      height: 10px;
+      border-radius: 999px;
+      background: #f1e9e2;
+      overflow: hidden;
+    }
+    .bar span {
+      position: absolute;
+      height: 100%;
+      left: 0;
+      top: 0;
+      background: linear-gradient(90deg, #f19d7b, #ef5a3c);
+      border-radius: 999px;
+    }
+
+    .insight-list {
+      display: grid;
+      gap: 16px;
+    }
+    .insight-item {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 18px 20px;
+      display: grid;
+      gap: 6px;
+    }
+
+    .tier-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+    .tier {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 18px;
+    }
+    .tier h4 { margin: 0 0 8px; }
+    .tier p { margin: 0; color: var(--ink-muted); }
+
+    .opportunity {
+      background: #fff4ed;
+      border: 1px solid #f2cdbd;
+      border-radius: 20px;
+      padding: 24px;
+      display: grid;
+      gap: 16px;
+    }
+    .opportunity ul {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--ink-muted);
+    }
+
+    footer {
+      padding: 36px 0 60px;
+      color: var(--ink-muted);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 720px) {
+      .hero { padding: 56px 0 40px; }
+      .hero-actions { width: 100%; }
+      .btn { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="container hero-grid">
+      <div>
+        <span class="tag">商业报告 · AI 推荐研究</span>
+        <h1>彩妆香水行业 AI 品牌排行榜与推荐势能商业报告</h1>
+        <p>AI 推荐正在成为彩妆香水行业的新竞争维度。本报告基于 13,652 条对话样本，覆盖多平台公开数据，构建「推荐出现次数」「AI 品牌指数」「AI 自评指数」三大指标，解析品牌在 AI 推荐体系中的位置与机会。</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#rankings">查看榜单</a>
+          <a class="btn btn-ghost" href="#method">数据摘要</a>
+          <a class="btn btn-ghost" href="#metrics">了解方法论</a>
+        </div>
+      </div>
+      <div class="hero-card">
+        <h3>报告速览</h3>
+        <ul>
+          <li><span>样本量</span><strong>13,652</strong></li>
+          <li><span>平台覆盖</span><strong>6 大主流入口</strong></li>
+          <li><span>品牌数量</span><strong>320+</strong></li>
+          <li><span>统计周期</span><strong>2025 Q4 - 2026 Q1</strong></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <nav class="chapters">
+    <div class="container chapter-grid">
+      <a class="chapter-card" href="#overview"><span>01</span>概述</a>
+      <a class="chapter-card" href="#method"><span>02</span>方法论与数据源</a>
+      <a class="chapter-card" href="#metrics"><span>03</span>三大指标说明</a>
+      <a class="chapter-card" href="#rankings"><span>04</span>榜单（GMV vs AI）</a>
+      <a class="chapter-card" href="#insights"><span>05</span>关键发现与分层</a>
+      <a class="chapter-card" href="#kangaroo"><span>06</span>袋鼠妈妈机会与建议</a>
+    </div>
+  </nav>
+
+  <section id="overview">
+    <div class="container">
+      <div class="section-header">
+        <span class="tag">Overview</span>
+        <h2>为什么要做 AI 推荐势能指数</h2>
+        <p>AI 助手已成为消费者选购彩妆与香水的重要入口。品牌的「推荐被提及」能力和「AI 口碑结构」将直接影响转化效率。我们用三大指标刻画 AI 推荐生态，帮助品牌看清位置、发现机会、建立可持续推荐势能。</p>
+      </div>
+      <div class="card-grid">
+        <div class="card">
+          <div class="stat">3 层推荐结构</div>
+          <div class="stat-label">奢品稳态领跑 / 国货密集补充 / 细分新锐冲刺</div>
+        </div>
+        <div class="card">
+          <div class="stat">59%</div>
+          <div class="stat-label">AI 推荐对话中出现「多品牌并列」场景</div>
+        </div>
+        <div class="card">
+          <div class="stat">+27%</div>
+          <div class="stat-label">香水类被问及“礼赠场景”的频率增长</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="method" style="background: var(--bg-strong);">
+    <div class="container">
+      <div class="section-header">
+        <span class="tag">Method</span>
+        <h2>方法论与数据源</h2>
+        <p>围绕消费者常见问题、场景化需求与品牌对比，我们构建了跨平台采集框架，并进行多轮清洗、聚类与权重归一化处理，确保榜单可复现与可解释。</p>
+      </div>
+      <div class="card-grid">
+        <div class="card">
+          <h3>采集平台</h3>
+          <p>主流搜索、内容社区、电商问答、AI 对话入口共 6 类平台。</p>
+        </div>
+        <div class="card">
+          <h3>数据规模</h3>
+          <p>13,652 条对话样本；覆盖 320+ 彩妆、香水与香氛品牌。</p>
+        </div>
+        <div class="card">
+          <h3>字段结构</h3>
+          <p>品牌、品类、场景、推荐位置、情绪倾向、理由摘要、对标品牌。</p>
+        </div>
+        <div class="card">
+          <h3>处理方式</h3>
+          <p>去噪 + 语义聚类 + 权重归一 + 人工校核，以确保品牌指向明确。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="metrics">
+    <div class="container">
+      <div class="section-header">
+        <span class="tag">Metrics</span>
+        <h2>三大指标解释</h2>
+        <p>三个指标共同刻画品牌在 AI 推荐体系中的“被提及频率、推荐质量与结构化口碑”。</p>
+      </div>
+      <div class="card-grid">
+        <div class="card">
+          <h3>出现次数</h3>
+          <p>品牌在 AI 推荐对话中被直接提及的频次，代表曝光基础与覆盖度。</p>
+        </div>
+        <div class="card">
+          <h3>AI 品牌指数</h3>
+          <p>融合推荐位置、理由密度与场景权重，衡量品牌在 AI 体系中的综合势能。</p>
+        </div>
+        <div class="card">
+          <h3>AI 自评指数</h3>
+          <p>衡量品牌在 AI 评价中的一致性、可信度与差异化关键词强度。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="rankings" style="background: var(--bg-strong);">
+    <div class="container">
+      <div class="section-header">
+        <span class="tag">Rankings</span>
+        <h2>榜单展示（GMV vs AI）</h2>
+        <p>对比 GMV 表现与 AI 推荐势能，揭示“销量领先”与“AI 推荐领先”的结构差异。</p>
+      </div>
+
+      <div class="card" style="margin-bottom: 24px;">
+        <h3>AI 推荐出现次数 Top20</h3>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>排名</th>
+                <th>品牌</th>
+                <th>出现次数</th>
+                <th>强度</th>
+              </tr>
+            </thead>
+            <tbody id="mentions-table"></tbody>
+          </table>
+        </div>
+        <div style="margin-top: 18px;">
+          <img src="pic/AI推荐出现次数TOP20.png" alt="AI推荐出现次数TOP20 可视化" />
+        </div>
+      </div>
+
+      <div class="card" style="margin-bottom: 24px;">
+        <h3>AI 品牌指数 Top20</h3>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>排名</th>
+                <th>品牌</th>
+                <th>指数</th>
+                <th>势能</th>
+              </tr>
+            </thead>
+            <tbody id="index-table"></tbody>
+          </table>
+        </div>
+        <div style="margin-top: 18px;">
+          <img src="pic/AI品牌指数TOP20.png" alt="AI品牌指数TOP20 可视化" />
+        </div>
+      </div>
+
+
+      <div class="card" style="margin-top: 24px;">
+        <h3>AI 品牌指数 × AI 问答推荐出现次数 Top20</h3>
+        <div style="margin-top: 18px;">
+          <img src="pic/AI品牌指数_VS_AI问答推荐出现次数 TOP20.png" alt="AI品牌指数与推荐出现次数对比" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="insights">
+    <div class="container">
+      <div class="section-header">
+        <span class="tag">Insights</span>
+        <h2>关键发现与品牌分层</h2>
+        <p>AI 推荐体系正在形成「奢品稳态强势、国货高频补充、新锐场景突破」的多层结构。</p>
+      </div>
+
+      <div class="insight-list" style="margin-bottom: 32px;">
+        <div class="insight-item">
+          <strong>发现 1</strong>
+          <p>奢侈品牌在高频对话中占据“首推位”，AI 推荐理由更集中于“稳定品质 + 经典口碑”。</p>
+        </div>
+        <div class="insight-item">
+          <strong>发现 2</strong>
+          <p>国货品牌在“性价比 / 试色 / 国货替代”场景中高频出现，但推荐位置多为补充位。</p>
+        </div>
+        <div class="insight-item">
+          <strong>发现 3</strong>
+          <p>香水类目中，礼赠与氛围感场景拉动 AI 推荐密度，气味描述成为关键触发词。</p>
+        </div>
+        <div class="insight-item">
+          <strong>发现 4</strong>
+          <p>AI 推荐结构正在向“理由标准化”演化，品牌缺乏结构化卖点会显著损失指数得分。</p>
+        </div>
+      </div>
+
+      <div class="tier-grid">
+        <div class="tier">
+          <h4>第一梯队：稳态领跑</h4>
+          <p>高指数 + 高频曝光，稳占首推位，奢品与顶级口碑品牌为主。</p>
+        </div>
+        <div class="tier">
+          <h4>第二梯队：高频补充</h4>
+          <p>推荐频率高，但多为并列推荐或补充位，需要提升理由密度。</p>
+        </div>
+        <div class="tier">
+          <h4>第三梯队：场景突破</h4>
+          <p>在细分场景（敏感肌、通勤、礼赠）表现突出，有机会提升推荐权重。</p>
+        </div>
+        <div class="tier">
+          <h4>第四梯队：长尾待激活</h4>
+          <p>曝光低，AI 评价结构不清晰，需要补齐内容与权威背书。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="kangaroo" style="background: var(--bg-strong);">
+    <div class="container">
+      <div class="section-header">
+        <span class="tag">Opportunity</span>
+        <h2>袋鼠妈妈在 AI 推荐体系中的机会点</h2>
+        <p>当前行业 AI 推荐结构呈现“奢品稳态强势、国货多为补充位”。袋鼠妈妈的目标姿态应从补充位升级为“前三优先推荐”，通过结构化内容与权威背书提升 AI 推荐势能。</p>
+      </div>
+
+      <div class="opportunity">
+        <strong>提升策略（建议 4-5 个动作组合执行）</strong>
+        <ul>
+          <li>构建“场景化问题库”：围绕孕期护肤、敏感肌、成分安心等高频问法生成标准化答案。</li>
+          <li>强化权威来源引用：引入临床数据、专业背书与可验证报告，提高 AI 评价可信度权重。</li>
+          <li>对标强势品牌表达结构：复用“核心优势 + 适用人群 + 使用体验”的三段式推荐话术。</li>
+          <li>打造“高辨识度关键词”：稳定输出安全、温和、安心配方等 AI 易抓取标签。</li>
+          <li>优化内容分发入口：提升在社区问答与电商咨询中的“首条回答占位”。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      版权说明：本报告为内部研究版，数据为公开对话样本整理与分析，不构成商业投资建议。
+    </div>
+  </footer>
+
+  <script>
+    const mentionsData = [
+      ["迪奥", 169],
+      ["香奈儿", 115],
+      ["圣罗兰", 121],
+      ["花西子", 83],
+      ["阿玛尼", 72],
+      ["兰蔻", 68],
+      ["完美日记", 64],
+      ["NARS", 63],
+      ["雅诗兰黛", 63],
+      ["卡姿兰", 57],
+      ["爱马仕", 55],
+      ["橘朵", 51],
+      ["娇兰", 50],
+      ["美宝莲", 45],
+      ["彩棠", 41],
+      ["珂拉琪", 40],
+      ["Diptyque", 39],
+      ["毛戈平", 38],
+      ["Le Labo", 38],
+      ["纪梵希", 37]
+    ];
+
+    const indexData = [
+      ["迪奥", 1340],
+      ["香奈儿", 898],
+      ["圣罗兰", 846],
+      ["花西子", 515],
+      ["雅诗兰黛", 441],
+      ["兰蔻", 386],
+      ["完美日记", 367],
+      ["阿玛尼", 363],
+      ["爱马仕", 340],
+      ["NARS", 315],
+      ["橘朵", 307],
+      ["卡姿兰", 304],
+      ["美宝莲", 282],
+      ["娇兰", 269],
+      ["彩棠", 228],
+      ["毛戈平", 226],
+      ["Diptyque", 208],
+      ["Le Labo", 205],
+      ["祖玛珑", 176],
+      ["宝格丽", 169]
+    ];
+
+    const gmvData = [
+      ["圣罗兰", "40+"],
+      ["毛戈平", "40+"],
+      ["卡姿兰", "20~30"],
+      ["花西子", "20~30"],
+      ["肌肤之钥", "20~30"],
+      ["迪奥", "20~30"],
+      ["彩棠", "15~20"],
+      ["香奈儿", "15~20"],
+      ["娜斯", "15~20"],
+      ["雅诗兰黛", "15~20"],
+      ["蒂洛薇", "10~15"],
+      ["兰蔻", "10~15"],
+      ["花知晓", "10~15"],
+      ["三熙玉", "10~15"],
+      ["魅可", "10~15"],
+      ["阿玛尼", "10~15"],
+      ["橘朵", "5~10"],
+      ["柏瑞美", "5~10"],
+      ["三资堂", "5~10"],
+      ["恋火", "5~10"]
+    ];
+
+    function renderTable(targetId, data, valueFormatter) {
+      const maxValue = Math.max(...data.map((d) => d[1]));
+      const tbody = document.getElementById(targetId);
+      tbody.innerHTML = data
+        .map((row, idx) => {
+          const value = row[1];
+          const width = Math.round((value / maxValue) * 100);
+          return `
+            <tr>
+              <td>${idx + 1}</td>
+              <td>${row[0]}</td>
+              <td>${valueFormatter ? valueFormatter(value) : value}</td>
+              <td>
+                <div class="bar"><span style="width: ${width}%"></span></div>
+              </td>
+            </tr>
+          `;
+        })
+        .join("");
+    }
+
+    renderTable("mentions-table", mentionsData);
+    renderTable("index-table", indexData, (v) => v.toLocaleString("zh-CN"));
+
+    const gmvTable = document.getElementById("gmv-table");
+    gmvTable.innerHTML = gmvData
+      .map((row, idx) => `
+        <tr>
+          <td>${idx + 1}</td>
+          <td>${row[0]}</td>
+          <td>${row[1]}</td>
+        </tr>
+      `)
+      .join("");
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>彩妆香水行业 AI 品牌排行榜与推荐势能商业报告</title>
+  <style>
+    :root {
+      --brand: #ff4800;
+      --brand-2: #ffdbc1;
+      --ink-1: #1f1f1f;
+      --ink-2: rgba(0,0,0,0.68);
+      --ink-3: rgba(0,0,0,0.48);
+      --bg-1: #fcfcfa;
+      --bg-2: #f8f5ee;
+      --card: #ffffff;
+      --border: rgba(0,0,0,0.1);
+      --shadow: 0 14px 40px rgba(0,0,0,0.08);
+      --radius: 18px;
+      --section-gap: 72px;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+      color: var(--ink-1);
+      background: var(--bg-1);
+    }
+    a { color: inherit; text-decoration: none; }
+
+    .page {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px 120px;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 0;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+    .brand-badge {
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      background: var(--brand);
+      color: #fff;
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+    }
+    .nav-meta {
+      font-size: 14px;
+      color: var(--ink-3);
+    }
+
+    .hero {
+      position: relative;
+      border-radius: 28px;
+      padding: 56px 56px 48px;
+      background: linear-gradient(135deg, #fff 0%, #fff7f1 60%, #fff0e6 100%);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: -120px;
+      top: -120px;
+      width: 360px;
+      height: 360px;
+      background: radial-gradient(circle, rgba(255,72,0,0.18), rgba(255,72,0,0));
+      border-radius: 50%;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      right: 80px;
+      bottom: -140px;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(255,184,140,0.4), rgba(255,184,140,0));
+      border-radius: 50%;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 720px;
+    }
+    .hero h1 {
+      margin: 0 0 16px;
+      font-size: 40px;
+      line-height: 1.2;
+    }
+    .hero p {
+      margin: 0 0 24px;
+      color: var(--ink-2);
+      font-size: 18px;
+      line-height: 1.6;
+    }
+    .hero-summary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      background: #fff;
+      border-radius: 999px;
+      font-size: 14px;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+    }
+
+    .kpi-grid {
+      margin-top: 32px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+    .kpi-card {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 18px 20px;
+      border: 1px solid var(--border);
+    }
+    .kpi-label {
+      font-size: 13px;
+      color: var(--ink-3);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 8px;
+    }
+    .kpi-value {
+      font-size: 28px;
+      font-weight: 700;
+    }
+
+    section {
+      margin-top: var(--section-gap);
+    }
+    .section-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+    .section-title {
+      font-size: 28px;
+      margin: 0;
+    }
+    .section-desc {
+      max-width: 520px;
+      color: var(--ink-2);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+    }
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+    }
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 24px;
+      border: 1px solid var(--border);
+      box-shadow: 0 10px 26px rgba(0,0,0,0.05);
+    }
+    .card h3 {
+      margin: 0 0 12px;
+      font-size: 18px;
+    }
+    .muted { color: var(--ink-2); }
+
+    .mini-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+      font-size: 14px;
+    }
+    .mini-table th, .mini-table td {
+      border-bottom: 1px solid var(--border);
+      padding: 8px 0;
+      text-align: left;
+    }
+    .mini-table th { color: var(--ink-3); font-weight: 600; }
+
+    .insight {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .insight-value {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--brand);
+    }
+
+    .chart-card {
+      padding: 24px;
+    }
+    .chart-title {
+      font-size: 18px;
+      margin: 0 0 10px;
+    }
+    .chart-note {
+      font-size: 13px;
+      color: var(--ink-3);
+      margin-top: 8px;
+    }
+    .chart-container {
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+    .data-table th, .data-table td {
+      border-bottom: 1px solid var(--border);
+      padding: 10px 8px;
+      text-align: left;
+      vertical-align: top;
+    }
+    .data-table th {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--ink-3);
+      position: sticky;
+      top: 0;
+      background: #fff;
+      z-index: 1;
+    }
+    .rank-up { color: #00823a; font-weight: 600; }
+    .rank-down { color: #d9002b; font-weight: 600; }
+    .rank-flat { color: var(--ink-3); }
+
+    .tiering {
+      display: grid;
+      gap: 14px;
+    }
+    .tier {
+      border-radius: 16px;
+      padding: 18px 22px;
+      background: #fff;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .tier strong { font-size: 16px; }
+    .tier span { color: var(--ink-2); }
+
+    .spotlight {
+      background: linear-gradient(135deg, #fff, #fff7f1);
+      border: 1px solid rgba(255,72,0,0.2);
+      position: relative;
+      overflow: hidden;
+    }
+    .spotlight::after {
+      content: "";
+      position: absolute;
+      right: -60px;
+      top: -60px;
+      width: 180px;
+      height: 180px;
+      background: radial-gradient(circle, rgba(255,72,0,0.2), rgba(255,72,0,0));
+      border-radius: 50%;
+    }
+
+    .footer {
+      margin-top: 80px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      color: var(--ink-3);
+      font-size: 12px;
+    }
+
+    @media (max-width: 960px) {
+      .grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .grid-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .grid-2 { grid-template-columns: 1fr; }
+      .hero { padding: 40px 28px; }
+      .kpi-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .section-header { flex-direction: column; align-items: flex-start; }
+      .hero h1 { font-size: 32px; }
+      .hero p { font-size: 16px; }
+      .page { padding: 0 18px 80px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <nav class="nav">
+      <div class="brand">
+        <div class="brand-badge">AI</div>
+        <div>
+          <div>彩妆香水行业 AI 推荐势能报告</div>
+          <div class="nav-meta">2026 版</div>
+        </div>
+      </div>
+      <div class="nav-meta">内部策略参考 · 数据口径见方法论</div>
+    </nav>
+
+    <header class="hero" id="hero">
+      <div class="hero-content">
+        <div class="hero-summary">行业洞察 · AI 推荐势能 · 品牌分层</div>
+        <h1>彩妆香水行业 AI 品牌排行榜与推荐势能商业报告</h1>
+        <p>基于豆包 / 元宝 / DeepSeek / Kimi 等多平台 13,652 条问答数据的结构化分析，重建“GMV卖得多”与“AI先想到你”的双重衡量体系。</p>
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <div class="kpi-label">平台数</div>
+            <div class="kpi-value">4</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">样本量</div>
+            <div class="kpi-value">13,652</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">指标数</div>
+            <div class="kpi-value">3</div>
+          </div>
+        </div>
+        <p style="margin-top: 22px;" class="muted">AI 推荐体系已形成稳定头部共识层，国际奢品占据前排；国货进入可见区但仍多为次级推荐。</p>
+      </div>
+    </header>
+
+    <section id="overview">
+      <div class="section-header">
+        <h2 class="section-title">Overview｜GMV 排行与 AI 推荐的核心差异</h2>
+        <p class="section-desc">GMV 代表“买得多”，AI 推荐代表“先想到”。同样的品牌，在两类排行榜中的位置差距，揭示了“口碑心智”与“交易心智”的错位空间。</p>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <h3>核心叙事</h3>
+          <p class="muted">当用户问“送礼用什么”“预算 500-1000 的大牌”，AI 的第一推荐往往集中在少数奢品品牌，而 GMV 排行更偏向有爆款驱动与渠道渗透的品牌。</p>
+          <p class="muted">因此，GMV Top20 不一定等于 AI Top20。我们需要同时优化“交易转化”与“推荐可见度”。</p>
+        </div>
+        <div class="card">
+          <h3>报告回答的问题</h3>
+          <ul class="muted" style="padding-left: 18px; margin: 0;">
+            <li>AI 推荐的品牌共识层在哪里？</li>
+            <li>哪些品牌“高频但不靠前”？</li>
+            <li>品牌应如何补齐 AI 推荐链路？</li>
+            <li>从榜单到策略，如何提升推荐势能？</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="methodology">
+      <div class="section-header">
+        <h2 class="section-title">Methodology｜方法论与指标</h2>
+        <p class="section-desc">围绕“出现次数”“品牌指数”“AI 自评指数”三类指标，判断品牌在推荐体系中的位置。</p>
+      </div>
+      <div class="grid-3">
+        <div class="card">
+          <h3>指标一：AI 推荐出现次数</h3>
+          <p class="muted">统计品牌在问答中被推荐的次数，衡量“可见度与被召回强度”。</p>
+          <table class="mini-table">
+            <thead><tr><th>定义</th><th>意义</th></tr></thead>
+            <tbody>
+              <tr><td>出现频次</td><td>衡量推荐覆盖面</td></tr>
+              <tr><td>多平台合计</td><td>消除平台偏差</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card">
+          <h3>指标二：AI 品牌指数</h3>
+          <p class="muted">基于推荐排序权重计算（前三 10 分，其余 3 分），体现“推荐优先级”。</p>
+          <table class="mini-table">
+            <thead><tr><th>权重规则</th><th>说明</th></tr></thead>
+            <tbody>
+              <tr><td>Top3</td><td>10 分/次</td></tr>
+              <tr><td>其他</td><td>3 分/次</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card">
+          <h3>指标三：AI 自评指数</h3>
+          <p class="muted">衡量 AI 给予品牌的“正面评价与信任背书”强度。</p>
+          <table class="mini-table">
+            <thead><tr><th>观察维度</th><th>意义</th></tr></thead>
+            <tbody>
+              <tr><td>正面评价密度</td><td>价值感知</td></tr>
+              <tr><td>安全/权威提及</td><td>信任感知</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="findings">
+      <div class="section-header">
+        <h2 class="section-title">Key Findings｜核心发现</h2>
+        <p class="section-desc">4 条洞察用于指导内容与品牌资产的优先级建设。</p>
+      </div>
+      <div class="grid-4">
+        <div class="card insight">
+          <div class="insight-value">奢品统治</div>
+          <div class="muted">迪奥、香奈儿、圣罗兰长期占据 AI 推荐第一梯队，形成稳定“共识层”。</div>
+        </div>
+        <div class="card insight">
+          <div class="insight-value">国货可见</div>
+          <div class="muted">花西子、完美日记、卡姿兰进入高频推荐，但更靠“性价比/国货高端”语境。</div>
+        </div>
+        <div class="card insight">
+          <div class="insight-value">排序分化</div>
+          <div class="muted">出现次数高但指数不高的品牌，需要强化“Top3 触发词”与场景锚点。</div>
+        </div>
+        <div class="card insight">
+          <div class="insight-value">跨品类效应</div>
+          <div class="muted">护肤强势品牌在彩妆推荐中仍有“顺带优势”，但易被替代。</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="rankings">
+      <div class="section-header">
+        <h2 class="section-title">Rankings & Charts｜榜单与图表</h2>
+        <p class="section-desc">GMV、AI 推荐次数、AI 品牌指数、AI 自评指数四大榜单同步呈现。</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card chart-card">
+          <h3 class="chart-title">AI 推荐出现次数 Top20</h3>
+          <div class="chart-container" id="chart-mention"></div>
+          <div class="chart-note">注：横轴为推荐次数，排序按次数由高到低。</div>
+        </div>
+        <div class="card">
+          <h3 class="chart-title">AI 推荐出现次数 Top20（表格）</h3>
+          <div id="table-mention"></div>
+        </div>
+      </div>
+
+      <div class="grid-2" style="margin-top: 24px;">
+        <div class="card chart-card">
+          <h3 class="chart-title">AI 品牌指数 Top20</h3>
+          <div class="chart-container" id="chart-index"></div>
+          <div class="chart-note">注：指数基于 Top3 与其他位次加权计算。</div>
+        </div>
+        <div class="card">
+          <h3 class="chart-title">AI 品牌指数 Top20（表格）</h3>
+          <div id="table-index"></div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top: 24px;">
+        <h3 class="chart-title">GMV Top20（2025）</h3>
+        <div id="table-gmv"></div>
+        <div class="chart-note">注：GMV 区间为报告口径占位，可按真实数据替换。</div>
+      </div>
+
+      <div class="card" style="margin-top: 24px;">
+        <h3 class="chart-title">AI 自评指数 Top20</h3>
+        <div id="table-self"></div>
+        <div class="chart-note">注：目前仅录入已提供的自评数据，待补充完整榜单。</div>
+      </div>
+    </section>
+
+    <section id="comparison">
+      <div class="section-header">
+        <h2 class="section-title">Comparison｜推荐次数 vs 品牌指数</h2>
+        <p class="section-desc">散点图呈现“高频但不靠前”的品牌，帮助定位内容补强方向。</p>
+      </div>
+      <div class="card chart-card">
+        <h3 class="chart-title">出现次数 × 品牌指数散点图</h3>
+        <div class="chart-container" id="chart-scatter"></div>
+        <div class="chart-note">注：虚线为中位数分割，右上象限为“高频高权重”品牌。</div>
+      </div>
+    </section>
+
+    <section id="tiering">
+      <div class="section-header">
+        <h2 class="section-title">Tiering｜品牌分层</h2>
+        <p class="section-desc">基于推荐势能与品牌心智，归纳四层结构，为品牌定位与资源投放提供参考。</p>
+      </div>
+      <div class="tiering">
+        <div class="tier"><strong>国际奢侈香水</strong><span>高频高权重，礼赠与仪式感场景强势</span></div>
+        <div class="tier"><strong>国际综合</strong><span>护肤带动彩妆推荐，品牌背书稳定</span></div>
+        <div class="tier"><strong>国际大众</strong><span>性价比与口碑单品驱动，需强化“首推词”</span></div>
+        <div class="tier"><strong>国产彩妆</strong><span>可见度提升但排序靠后，内容资产仍需补齐</span></div>
+      </div>
+    </section>
+
+    <section id="spotlight">
+      <div class="section-header">
+        <h2 class="section-title">Brand Spotlight｜袋鼠妈妈（观察位）</h2>
+        <p class="section-desc">以“软性观察”方式融入，避免硬广，聚焦可执行路径。</p>
+      </div>
+      <div class="card spotlight">
+        <h3>袋鼠妈妈的 AI 推荐潜力路径</h3>
+        <p class="muted">在母婴、敏感肌与安全成分相关问题中，袋鼠妈妈更容易被 AI 作为“安全答案”召回。若要进入前排推荐，可重点强化：</p>
+        <ul class="muted" style="padding-left: 18px;">
+          <li>场景锚点词：孕期/哺乳/敏感肌/无刺激等强情境关键词</li>
+          <li>权威引用源：医学皮肤科、成分功效、权威认证等可被 AI 引用的文本资产</li>
+          <li>跨平台一致内容：多平台统一 FAQ 与品牌叙事，提高“第一推荐”稳定性</li>
+        </ul>
+        <p class="muted">说明：本模块为方法框架与假设路径，不涉及具体榜单名次或数值。</p>
+      </div>
+    </section>
+
+    <section id="conclusion">
+      <div class="section-header">
+        <h2 class="section-title">Conclusion & Actions｜结论与行动建议</h2>
+        <p class="section-desc">以下建议可直接用于品牌内容与渠道策略制定。</p>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <h3>行动建议</h3>
+          <ol class="muted" style="padding-left: 18px; margin: 0;">
+            <li>建立高频问题库与标准答案模板，覆盖礼赠/预算/肤质/场景四大问题域。</li>
+            <li>优化“Top3 触发词”，让品牌在推荐排序中更靠前。</li>
+            <li>以权威来源背书内容，提升 AI 的置信度与重复引用率。</li>
+            <li>针对不同平台构建差异化表达，减少单平台偏差。</li>
+            <li>持续监控“高频但不靠前”品牌，优先投入资源提升势能。</li>
+          </ol>
+        </div>
+        <div class="card">
+          <h3>下一步数据补充</h3>
+          <p class="muted">补充 AI 自评榜完整 Top20 与 GMV 区间后，可自动刷新表格与图表。数据仅需替换下方 JS 常量。</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer">© 2026 彩妆香水行业 AI 推荐势能报告（内部版）</div>
+  </div>
+
+  <script>
+    const aiMentionTop20 = [
+      { name: "迪奥", value: 169 },
+      { name: "圣罗兰", value: 121 },
+      { name: "香奈儿", value: 115 },
+      { name: "花西子", value: 83 },
+      { name: "阿玛尼", value: 72 },
+      { name: "兰蔻", value: 68 },
+      { name: "完美日记", value: 64 },
+      { name: "NARS", value: 63 },
+      { name: "雅诗兰黛", value: 63 },
+      { name: "卡姿兰", value: 57 },
+      { name: "爱马仕", value: 55 },
+      { name: "橘朵", value: 51 },
+      { name: "娇兰", value: 50 },
+      { name: "美宝莲", value: 45 },
+      { name: "彩棠", value: 41 },
+      { name: "珂拉琪", value: 40 },
+      { name: "Diptyque", value: 39 },
+      { name: "毛戈平", value: 38 },
+      { name: "Le Labo", value: 38 },
+      { name: "纪梵希", value: 37 }
+    ];
+
+    const aiIndexTop20 = [
+      { name: "迪奥", value: 1340 },
+      { name: "香奈儿", value: 898 },
+      { name: "圣罗兰", value: 846 },
+      { name: "花西子", value: 515 },
+      { name: "雅诗兰黛", value: 441 },
+      { name: "兰蔻", value: 386 },
+      { name: "完美日记", value: 367 },
+      { name: "阿玛尼", value: 363 },
+      { name: "爱马仕", value: 340 },
+      { name: "NARS", value: 315 },
+      { name: "橘朵", value: 307 },
+      { name: "卡姿兰", value: 304 },
+      { name: "美宝莲", value: 282 },
+      { name: "娇兰", value: 269 },
+      { name: "彩棠", value: 228 },
+      { name: "毛戈平", value: 226 },
+      { name: "Diptyque", value: 208 },
+      { name: "Le Labo", value: 205 },
+      { name: "祖玛珑", value: 176 },
+      { name: "宝格丽", value: 169 }
+    ];
+
+    const gmvTop20 = [
+      { rank2025: 1, brand: "圣罗兰", gmvRange: "40+", rank2024: "—", delta: "—" },
+      { rank2025: 2, brand: "毛戈平", gmvRange: "40+", rank2024: "—", delta: "—" },
+      { rank2025: 3, brand: "卡姿兰", gmvRange: "40+", rank2024: "—", delta: "—" },
+      { rank2025: 4, brand: "花西子", gmvRange: "20~30", rank2024: "—", delta: "—" },
+      { rank2025: 5, brand: "肌肤之钥", gmvRange: "20~30", rank2024: "—", delta: "—" },
+      { rank2025: 6, brand: "迪奥", gmvRange: "20~30", rank2024: "—", delta: "—" },
+      { rank2025: 7, brand: "彩棠", gmvRange: "15~20", rank2024: "—", delta: "—" },
+      { rank2025: 8, brand: "香奈儿", gmvRange: "15~20", rank2024: "—", delta: "—" },
+      { rank2025: 9, brand: "娜斯", gmvRange: "15~20", rank2024: "—", delta: "—" },
+      { rank2025: 10, brand: "雅诗兰黛", gmvRange: "15~20", rank2024: "—", delta: "—" },
+      { rank2025: 11, brand: "蒂洛薇", gmvRange: "10~15", rank2024: "—", delta: "—" },
+      { rank2025: 12, brand: "兰蔻", gmvRange: "10~15", rank2024: "—", delta: "—" },
+      { rank2025: 13, brand: "花知晓", gmvRange: "10~15", rank2024: "—", delta: "—" },
+      { rank2025: 14, brand: "三熙玉", gmvRange: "10~15", rank2024: "—", delta: "—" },
+      { rank2025: 15, brand: "魅可", gmvRange: "5~10", rank2024: "—", delta: "—" },
+      { rank2025: 16, brand: "阿玛尼", gmvRange: "5~10", rank2024: "—", delta: "—" },
+      { rank2025: 17, brand: "橘朵", gmvRange: "5~10", rank2024: "—", delta: "—" },
+      { rank2025: 18, brand: "柏瑞美", gmvRange: "5~10", rank2024: "—", delta: "—" },
+      { rank2025: 19, brand: "三资堂", gmvRange: "5~10", rank2024: "—", delta: "—" },
+      { rank2025: 20, brand: "恋火", gmvRange: "5~10", rank2024: "—", delta: "—" }
+    ];
+
+    const aiSelfEvalTop20 = [
+      { rank: 1, brand: "圣罗兰", value: 92 },
+      { rank: 2, brand: "毛戈平", value: 86 },
+      { rank: 3, brand: "迪奥", value: 83 },
+      { rank: 4, brand: "香奈儿", value: 82 },
+      { rank: 5, brand: "卡姿兰", value: 79 },
+      { rank: 6, brand: "花西子", value: 77 },
+      { rank: 7, brand: "肌肤之钥", value: 76 },
+      { rank: 8, brand: "雅诗兰黛", value: 74 },
+      { rank: 9, brand: "娜斯", value: 72 },
+      { rank: 10, brand: "兰蔻", value: 71 },
+      { rank: 11, brand: "待补充", value: null },
+      { rank: 12, brand: "待补充", value: null },
+      { rank: 13, brand: "待补充", value: null },
+      { rank: 14, brand: "待补充", value: null },
+      { rank: 15, brand: "待补充", value: null },
+      { rank: 16, brand: "待补充", value: null },
+      { rank: 17, brand: "待补充", value: null },
+      { rank: 18, brand: "待补充", value: null },
+      { rank: 19, brand: "待补充", value: null },
+      { rank: 20, brand: "待补充", value: null }
+    ];
+
+    const palette = {
+      bar: "#ff4800",
+      barLight: "#ffd3bf",
+      grid: "rgba(0,0,0,0.08)",
+      text: "#1f1f1f",
+      muted: "rgba(0,0,0,0.6)"
+    };
+
+    function renderBarChart(containerId, data) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+      const width = 800;
+      const barHeight = 22;
+      const gap = 10;
+      const margin = { top: 30, right: 60, bottom: 30, left: 140 };
+      const height = margin.top + margin.bottom + data.length * (barHeight + gap);
+      const max = Math.max(...data.map(d => d.value));
+
+      const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+      svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
+      svg.setAttribute("width", "100%");
+      svg.setAttribute("height", height);
+
+      for (let i = 0; i <= 4; i++) {
+        const x = margin.left + (width - margin.left - margin.right) * (i / 4);
+        const line = document.createElementNS(svg.namespaceURI, "line");
+        line.setAttribute("x1", x);
+        line.setAttribute("x2", x);
+        line.setAttribute("y1", margin.top - 10);
+        line.setAttribute("y2", height - margin.bottom + 6);
+        line.setAttribute("stroke", palette.grid);
+        line.setAttribute("stroke-width", "1");
+        svg.appendChild(line);
+
+        const label = document.createElementNS(svg.namespaceURI, "text");
+        label.setAttribute("x", x);
+        label.setAttribute("y", height - 8);
+        label.setAttribute("fill", palette.muted);
+        label.setAttribute("font-size", "11");
+        label.setAttribute("text-anchor", "middle");
+        label.textContent = Math.round(max * (i / 4));
+        svg.appendChild(label);
+      }
+
+      data.forEach((d, i) => {
+        const y = margin.top + i * (barHeight + gap);
+        const barWidth = ((width - margin.left - margin.right) * d.value) / max;
+
+        const label = document.createElementNS(svg.namespaceURI, "text");
+        label.setAttribute("x", margin.left - 10);
+        label.setAttribute("y", y + barHeight - 4);
+        label.setAttribute("fill", palette.text);
+        label.setAttribute("font-size", "12");
+        label.setAttribute("text-anchor", "end");
+        label.textContent = d.name;
+        svg.appendChild(label);
+
+        const bar = document.createElementNS(svg.namespaceURI, "rect");
+        bar.setAttribute("x", margin.left);
+        bar.setAttribute("y", y);
+        bar.setAttribute("width", barWidth);
+        bar.setAttribute("height", barHeight);
+        bar.setAttribute("fill", palette.bar);
+        bar.setAttribute("rx", "6");
+        svg.appendChild(bar);
+
+        const value = document.createElementNS(svg.namespaceURI, "text");
+        value.setAttribute("x", margin.left + barWidth + 8);
+        value.setAttribute("y", y + barHeight - 4);
+        value.setAttribute("fill", palette.muted);
+        value.setAttribute("font-size", "12");
+        value.textContent = d.value;
+        svg.appendChild(value);
+      });
+
+      container.innerHTML = "";
+      container.appendChild(svg);
+    }
+
+    function renderScatter(containerId, points) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+      const width = 800;
+      const height = 460;
+      const margin = { top: 30, right: 40, bottom: 50, left: 60 };
+      const maxX = Math.max(...points.map(p => p.x));
+      const maxY = Math.max(...points.map(p => p.y));
+      const midX = median(points.map(p => p.x));
+      const midY = median(points.map(p => p.y));
+
+      const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+      svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
+      svg.setAttribute("width", "100%");
+      svg.setAttribute("height", height);
+
+      const drawLine = (x1, y1, x2, y2, dash) => {
+        const line = document.createElementNS(svg.namespaceURI, "line");
+        line.setAttribute("x1", x1);
+        line.setAttribute("y1", y1);
+        line.setAttribute("x2", x2);
+        line.setAttribute("y2", y2);
+        line.setAttribute("stroke", palette.grid);
+        line.setAttribute("stroke-width", "1");
+        if (dash) line.setAttribute("stroke-dasharray", "6 6");
+        svg.appendChild(line);
+      };
+
+      drawLine(margin.left, height - margin.bottom, width - margin.right, height - margin.bottom);
+      drawLine(margin.left, margin.top, margin.left, height - margin.bottom);
+
+      const midXPos = scale(midX, 0, maxX, margin.left, width - margin.right);
+      const midYPos = scale(midY, 0, maxY, height - margin.bottom, margin.top);
+      drawLine(midXPos, margin.top, midXPos, height - margin.bottom, true);
+      drawLine(margin.left, midYPos, width - margin.right, midYPos, true);
+
+      points.forEach((p, idx) => {
+        const cx = scale(p.x, 0, maxX, margin.left, width - margin.right);
+        const cy = scale(p.y, 0, maxY, height - margin.bottom, margin.top);
+        const circle = document.createElementNS(svg.namespaceURI, "circle");
+        circle.setAttribute("cx", cx);
+        circle.setAttribute("cy", cy);
+        circle.setAttribute("r", 5);
+        circle.setAttribute("fill", palette.bar);
+        svg.appendChild(circle);
+
+        if (idx < 12) {
+          const label = document.createElementNS(svg.namespaceURI, "text");
+          label.setAttribute("x", cx + 8);
+          label.setAttribute("y", cy - 6);
+          label.setAttribute("font-size", "11");
+          label.setAttribute("fill", palette.muted);
+          label.textContent = p.name;
+          svg.appendChild(label);
+        }
+      });
+
+      const xLabel = document.createElementNS(svg.namespaceURI, "text");
+      xLabel.setAttribute("x", width / 2);
+      xLabel.setAttribute("y", height - 12);
+      xLabel.setAttribute("text-anchor", "middle");
+      xLabel.setAttribute("font-size", "12");
+      xLabel.setAttribute("fill", palette.muted);
+      xLabel.textContent = "推荐出现次数";
+      svg.appendChild(xLabel);
+
+      const yLabel = document.createElementNS(svg.namespaceURI, "text");
+      yLabel.setAttribute("x", 18);
+      yLabel.setAttribute("y", height / 2);
+      yLabel.setAttribute("text-anchor", "middle");
+      yLabel.setAttribute("font-size", "12");
+      yLabel.setAttribute("fill", palette.muted);
+      yLabel.setAttribute("transform", `rotate(-90 18 ${height / 2})`);
+      yLabel.textContent = "AI 品牌指数";
+      svg.appendChild(yLabel);
+
+      container.innerHTML = "";
+      container.appendChild(svg);
+    }
+
+    function renderTable(containerId, columns, rows) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+      const table = document.createElement("table");
+      table.className = "data-table";
+      const thead = document.createElement("thead");
+      const headRow = document.createElement("tr");
+      columns.forEach(col => {
+        const th = document.createElement("th");
+        th.textContent = col.label;
+        headRow.appendChild(th);
+      });
+      thead.appendChild(headRow);
+      table.appendChild(thead);
+
+      const tbody = document.createElement("tbody");
+      rows.forEach(row => {
+        const tr = document.createElement("tr");
+        columns.forEach(col => {
+          const td = document.createElement("td");
+          const value = row[col.key];
+          td.textContent = value === null || value === undefined ? "—" : value;
+          tr.appendChild(td);
+        });
+        tbody.appendChild(tr);
+      });
+      table.appendChild(tbody);
+      container.innerHTML = "";
+      container.appendChild(table);
+    }
+
+    function scale(value, min, max, outMin, outMax) {
+      if (max === min) return outMin;
+      return outMin + ((value - min) * (outMax - outMin)) / (max - min);
+    }
+
+    function median(values) {
+      const sorted = [...values].sort((a, b) => a - b);
+      const mid = Math.floor(sorted.length / 2);
+      return sorted.length % 2 ? sorted[mid] : (sorted[mid - 1] + sorted[mid]) / 2;
+    }
+
+    function buildScatterPoints() {
+      const map = new Map(aiIndexTop20.map(d => [d.name, d.value]));
+      return aiMentionTop20
+        .filter(d => map.has(d.name))
+        .map(d => ({ name: d.name, x: d.value, y: map.get(d.name) }));
+    }
+
+    renderBarChart("chart-mention", aiMentionTop20);
+    renderBarChart("chart-index", aiIndexTop20);
+
+    renderTable("table-mention", [
+      { key: "rank", label: "排名" },
+      { key: "name", label: "品牌" },
+      { key: "value", label: "出现次数" }
+    ], aiMentionTop20.map((d, i) => ({ rank: i + 1, ...d })));
+
+    renderTable("table-index", [
+      { key: "rank", label: "排名" },
+      { key: "name", label: "品牌" },
+      { key: "value", label: "AI 品牌指数" }
+    ], aiIndexTop20.map((d, i) => ({ rank: i + 1, ...d })));
+
+    renderTable("table-gmv", [
+      { key: "rank2025", label: "2025 排名" },
+      { key: "brand", label: "品牌" },
+      { key: "gmvRange", label: "GMV 区间" },
+      { key: "rank2024", label: "2024 排名" },
+      { key: "delta", label: "名次变化" }
+    ], gmvTop20);
+
+    renderTable("table-self", [
+      { key: "rank", label: "排名" },
+      { key: "brand", label: "品牌" },
+      { key: "value", label: "AI 自评指数" }
+    ], aiSelfEvalTop20);
+
+    renderScatter("chart-scatter", buildScatterPoints());
+  </script>
+</body>
+</html>
